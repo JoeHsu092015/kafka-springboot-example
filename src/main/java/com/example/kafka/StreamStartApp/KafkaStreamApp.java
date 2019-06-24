@@ -3,18 +3,11 @@ package com.example.kafka.StreamStartApp;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.state.Stores;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.kafka.support.AbstractKafkaHeaderMapper;
-
-import java.awt.font.ShapeGraphicAttribute;
-import java.util.Collections;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
@@ -31,13 +24,15 @@ public class KafkaStreamApp {
 		config.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
 		config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 		config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-		config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.);
+		config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
 		// setting offset reset to earliest so that we can re-run the demo code with the same pre-loaded data
 		config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 
 
 		final Topology builder = new Topology();
+
+
 
 		builder.addSource("Source", "streams-plaintext-input");
 
